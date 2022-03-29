@@ -2,27 +2,21 @@
 
 zsh_plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
 zsh_themes_dir="$HOME/.oh-my-zsh/custom/themes"
+tmux_plugins_dir="$HOME/.tmux/plugins"
 
-function install_zsh_plugin() {
-    if [ -d "$zsh_plugins_dir/$2" ]; then
-        echo "Plugin $1/$2 already installed"
+# params: plugin_dir, username, repo
+function install_plugin() {
+    if [ -d "$1/$3" ]; then
+        echo "Plugin $2/$3 already installed"
         echo "Updating..."
-        cd "$zsh_plugins_dir/$2" && git pull
+        cd "$1/$3" && git pull
     else
-        git clone --depth=1 "https://github.com/$1/$2.git" "$zsh_plugins_dir/$2"
+        git clone --depth=1 "https://github.com/$2/$3.git" "$1/$3"
     fi
     echo ""
 }
 
-install_zsh_plugin "romkatv" "powerlevel10k"
-install_zsh_plugin "zsh-users" "zsh-autosuggestions"
-install_zsh_plugin "zsh-users" "zsh-syntax-highlighting"
-
-# Chezmoi
-if ! [ -x "$(command -v chezmoi)" ]; then
-    echo "Chezmoi is not installed." >&2
-    echo "Installing chezmoi"
-    sh -c "$(curl -fsLS chezmoi.io/get)"
-else
-    echo "Chezmoi is already installed"
-fi
+install_plugin $zsh_themes_dir "romkatv" "powerlevel10k"
+install_plugin $zsh_plugins_dir "zsh-users" "zsh-autosuggestions"
+install_plugin $zsh_plugins_dir "zsh-users" "zsh-syntax-highlighting"
+install_plugin $tmux_plugins_dir "tmux-plugins" "tpm"
