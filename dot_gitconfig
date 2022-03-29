@@ -1,0 +1,11 @@
+[user]
+    name = binh.buidang
+    username = dunkbing
+[init]
+    defaultBranch = main
+[core]
+	editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	pager = delta
+[color]
+    ui = auto
