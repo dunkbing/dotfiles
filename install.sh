@@ -1,9 +1,5 @@
 #!/bin/bash
 
-zsh_plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
-zsh_themes_dir="$HOME/.oh-my-zsh/custom/themes"
-tmux_plugins_dir="$HOME/.tmux/plugins"
-
 # params: plugin_dir, username, repo
 function install_plugin() {
     if [ -d "$1/$3" ]; then
@@ -15,6 +11,10 @@ function install_plugin() {
     fi
     echo ""
 }
+
+zsh_plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
+zsh_themes_dir="$HOME/.oh-my-zsh/custom/themes"
+tmux_plugins_dir="$HOME/.tmux/plugins"
 
 install_plugin $zsh_themes_dir "romkatv" "powerlevel10k"
 install_plugin $zsh_plugins_dir "zsh-users" "zsh-autosuggestions"
@@ -35,4 +35,5 @@ link_file ~/dotfiles/.zshrc ~/.zshrc
 link_file ~/dotfiles/.gitconfig ~/.gitconfig
 link_file ~/dotfiles/.profile ~/.profile
 link_file ~/dotfiles/.tmux.conf ~/.tmux.conf
+link_file ~/dotfiles/.bashrc ~/.bashrc
 link_file ~/dotfiles/nvim ~/.config/nvim
