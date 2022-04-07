@@ -37,7 +37,20 @@ link_file $HOME/dotfiles/.gitconfig ~/.gitconfig
 link_file $HOME/dotfiles/.profile ~/.profile
 link_file $HOME/dotfiles/.tmux.conf ~/.tmux.conf
 link_file $HOME/dotfiles/.bashrc ~/.bashrc
-link_file $HOME/dotfiles/nvim $HOME/.config/
 
 # copy fonts
 cp -a $HOME/dotfiles/fonts/. $HOME/.local/share/fonts/
+
+# region vim
+link_file $HOME/dotfiles/nvim $HOME/.config/
+
+vimplug_dir="$HOME/.local/share/nvim/site/autoload/plug.vim"
+vimplug_url="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+if [ ! -f "$vimplug_dir" ]; then
+    echo "Installing vimplug"
+    curl -fLo $vimplug_dir --create-dirs $vimplug_url
+    nvim '+PlugInstall' '+qa'
+else
+    echo "Vimplug already installed"
+fi
+# endregion
