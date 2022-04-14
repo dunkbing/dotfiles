@@ -1,13 +1,17 @@
 " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
     " telescope
-    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/plenary.nvim' " required for telescope to work
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'LinArcX/telescope-command-palette.nvim'
     Plug 'lewis6991/gitsigns.nvim'
 
     " copilot
     Plug 'github/copilot.vim'
+
+    " key bindings
+    Plug 'folke/which-key.nvim'
 
     " lsp
     Plug 'neovim/nvim-lspconfig'
@@ -39,7 +43,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
 
-    Plug 'tomtom/tcomment_vim'
+    " comment
+    Plug 'numToStr/Comment.nvim'
 call plug#end()
 
 colorscheme codedark
@@ -74,18 +79,6 @@ endif
 " set leader key to ,
 let g:mapleader="\\"
 
-" >> Telescope bindings
-" find files
-nnoremap <Leader>ff <cmd>lua require'telescope.builtin'.find_files{}<CR>
-" most recently used files
-nnoremap <Leader>of <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
-" find buffer
-nnoremap <Leader>fb <cmd>lua require'telescope.builtin'.buffers{}<CR>
-" ripgrep like grep through dir
-nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
-" pick color scheme
-nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
-
 " >> setup nerdcomment key bindings
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
@@ -93,14 +86,8 @@ let g:NERDSpaceDelims = 1
 xnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
 nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
 
-" >> Lsp key bindings
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-k> <cmd>Lspsaga hover_doc<CR>
+nnoremap <silent> <K>   <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
@@ -116,5 +103,8 @@ require("treesitter")
 require("statusline")
 require("completion")
 require("gitsigns-config")
+require("_telescope")
+require("mappings")
+require("comment")
 EOF
 
