@@ -155,9 +155,6 @@ export GOPATH=$GOROOT/packages
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # export PATH=$PATH:/usr/local/go/bin
 
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 

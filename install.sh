@@ -60,7 +60,10 @@ link_file $HOME/dotfiles/.bashrc ~/.bashrc
 cp -a $HOME/dotfiles/fonts/. $HOME/.local/share/fonts/
 
 # region fnm
-curl -fsSL https://fnm.vercel.app/install | bash
+if ! [ -x "$(command -v fnm)" ]; then
+    echo 'fnm is not installed.' >&2
+    curl -fsSL https://fnm.vercel.app/install | bash
+fi
 # endregion
 
 unset zsh_plugins_dir
