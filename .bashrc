@@ -116,8 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -142,12 +140,8 @@ export PATH="$HOME/.rd/bin:$PATH"
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
-
-# fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
-eval "`fnm env`"
 exec zsh
 
-# fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
-eval "`fnm env`"
+complete -C /usr/bin/terraform terraform
+
+complete -C /usr/bin/nomad nomad

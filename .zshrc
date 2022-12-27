@@ -164,12 +164,7 @@ export PATH="$HOME/.rd/bin:$PATH"
 
 alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 
-
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# fnm
-export PATH=$HOME/.fnm:$PATH
-eval "`fnm env`"
 
 # some ls aliases
 alias ll='ls -alF'
@@ -184,3 +179,24 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+# deno end
+
+# fnm
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"
+# fnm end
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+complete -o nospace -C /usr/bin/nomad nomad
+
+# k8s
+source <(kubectl completion zsh)
+alias k='kubectl'
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+# k8s end
